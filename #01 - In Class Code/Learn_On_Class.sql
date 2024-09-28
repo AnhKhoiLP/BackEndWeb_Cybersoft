@@ -4,11 +4,12 @@
 	-- + SHOW DATABASES
 -- #02 - TẠO TABLE, DATA
 	-- > TABLE USERS
-		CREATE TABLE users(
+		CREATE TABLE users
+		(
 			full_name		VARCHAR		(100),
 			email			VARCHAR		(200),
-			age				INT,
-			pass_word		VARCHAR		(200)
+			pass_word		VARCHAR		(200),
+			age				INT			(200)
 			);
 	-- > DATA USERS
 		INSERT INTO users (full_name, email, pass_word) VALUES
@@ -33,5 +34,8 @@
 			('William King'		,'william.king@example.com'			,23		,'password123'	),
 			('Charlotte Wright'	,'charlotte.wright@example.com'		,23		,'password123'	);
 	-- > QUERY DATA OF TABLE USERS
-	SELECT * FROM users
-	SELECT full_name AS 'Họ Tên', email from users
+		--+ QUERY HẾT TẤT CẢ TRONG TABLE USER
+			SELECT *
+			FROM users
+		--+ QUERY CỘT 'full_name' VÀ CỘT 'email'
+			SELECT full_name AS 'Họ Tên', email from users
