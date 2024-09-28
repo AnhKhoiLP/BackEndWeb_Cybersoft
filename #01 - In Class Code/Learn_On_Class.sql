@@ -3,7 +3,6 @@
 	-- + CREATE DATABASE <TÊN DATABASE>
 	-- + SHOW DATABASES
 -- #02 - TẠO TABLE, DATA
-DROP TABLE users
 	-- > TABLE USERS
 		CREATE TABLE users(
 			full_name		VARCHAR		(100)	,
@@ -12,7 +11,7 @@ DROP TABLE users
 			pass_word		VARCHAR		(200)	 
 			);
 	-- > DATA USERS
-		INSERT INTO users (full_name, email, pass_word) VALUES
+		INSERT INTO users (full_name, email, age, pass_word) VALUES
 			('John Doe'			,'john.doe@example.com'				,23		,'password123'	),
 			('Jane Smith'		,'jane.smith@example.com'			,28		,'password123'	),
 			('Michael Johnson'	,'michael.johnson@example.com'		,30		,'password123'	),
