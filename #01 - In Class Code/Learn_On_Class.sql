@@ -3,7 +3,7 @@
 	--+ CREATE DATABASE <TÊN DATABASE>
 	--+ SHOW DATABASES
 --#02 - TẠO TABLE, DATA
-	--> TABLE USERS
+	--> TABLE users
 		--+ Có 3 Kiểu Dữ Liệu Chính
 			--? Number: INTTEGER, FLOAT, ...
 			--? String: VARCHAR, TEXT, ...
@@ -38,19 +38,79 @@
 			('Nguyen Thi R'		, 'nguyenthir@example.com'	, 23	, 'securepassR@123'		),
 			('Le Van S'			, 'levans@example.com'		, 21	, 'Spasswordstrong!'	);
 	--> QUERY DATA OF TABLE USERS
-		--+ QUERY HẾT TẤSELECT *
-			FROM users
-			WHERE age >= 20 AND age <= 30T CẢ TRONG TABLE USER
+		--+ QUERY HẾT TẤT CẢ TRONG TABLE 'users'
 			SELECT *
-			FROM users
+			FROM users;
 		--+ QUERY CỘT 'full_name' VÀ CỘT 'email'
-			SELECT full_name AS 'Họ Tên', email from users
-		--+ Lấy Những Người Có Tuổi Từ 20-30 Tuổi
-			--* Cách 01:
+			SELECT full_name AS 'Họ Tên', email
+			FROM users;
+		--+ LẤY NHỮNG NGƯỜI CÓ TUỔI TỪ 20-30 TUỔI
+			--* Cách 01: Regular Way, Sắp Xếp TĂNG Dần
 				SELECT *
 				FROM users
 				WHERE age >= 20 AND age <= 30
-			--* Cách 02:
+				ORDER BY age ASC;
+			--* Cách 02: BETWEEN, Sắp Xếp GIẢM Dần
 				SELECT *
 				FROM users
 				WHERE age BETWEEN 20 AND 30
+				ORDER BY age DESC;
+		--+ ALTER TABLE => UPDATE TABLE THAY VÌ XÓA VÀ TẠO LẠI
+			--* THÊM COLUMN 'address' VÀ 'phone' CHO TABLE 'users'
+				ALTER TABLE users
+				ADD COLUMN 		address 		VARCHAR		(255),
+				ADD COLUMN 		phone 			VARCHAR		(15);
+			--* THAY ĐỔI KIỂU DỮ LIỆU
+				ALTER TABLE users
+				MODIFY 			address			VARCHAR		(100);
+			--* THÊM RÀNG BUỘC (CONSTRAINT)
+				ALTER TABLE users
+				MODIFY 			full_name			VARCHAR		(100)		NOT NULL;
+		--+ LIỆT KÊ NHỮNG NGƯỜI CÓ TUỔI LỚN NHẤT
+			--* CÁCH 01: SUB QUERIES
+				SELECT *
+				FROM users
+				WHERE age =
+					(
+						SELECT MAX(age)
+						FROM users
+					);
+			--* CÁCH 02: CTEs
+				WITH MaxAgeCTE AS
+					(
+						SELECT MAX(age) AS MaxAge
+						FROM users
+					)
+				SELECT *
+				FROM users
+				WHERE age =
+					(
+						SELECT MaxAge
+						FROM MaxAgeCTE
+					);
+			--* CÁCH 03: DÙNG JOIN
+				SELECT u.*
+				FROM users u
+				JOIN
+				(
+					SELECT MAX(age) AS MaxAge
+					FROM users
+				) AS MaxAgeTable
+				ON u.age = MaxAgeTable.MaxAge;
+			--* CÁCH 04: WINDOW FUNCTION
+				SELECT *
+				FROM
+				(
+					SELECT *, MAX(age) OVER () AS MaxAge
+					FROM users
+				) AS T
+				WHERE age = MaxAge;
+			--* CÁCH 05: HAVING
+				SELECT *
+				FROM users
+				GROUP BY email, age, full_name, pass_word, address, phone
+				HAVING age =
+					(
+						SELECT MAX(age)
+						FROM users
+					);
