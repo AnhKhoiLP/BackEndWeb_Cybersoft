@@ -282,7 +282,7 @@
 					res_id 		INT											,
 					FOREIGN KEY(res_id) REFERENCES restaurant(res_id)			
 				)
-
+			--* DATA TABLE 'like_res'
 				INSERT INTO like_res (user_id, res_id, date_like) VALUES
 					(1		, 1		, '2024-09-01'	),
 					(2		, 2		, '2024-09-02'	),
