@@ -14,7 +14,8 @@
 			email			VARCHAR		(200)	,
 			age				INT					,
 			pass_word		VARCHAR		(200)	 
-		);
+		)
+		;
 	--> DATA USERS
 		INSERT INTO users (full_name, email, age, pass_word) VALUES 
 			('Nguyen Van A'		, 'nguyenvana@example.com'	, 25	, 'password123'			),
@@ -65,7 +66,8 @@
 				MODIFY 			address			VARCHAR		(100);
 			--* THÊM RÀNG BUỘC (CONSTRAINT)
 				ALTER TABLE users
-				MODIFY 			full_name			VARCHAR		(100)		NOT NULL;
+				MODIFY 			full_name		VARCHAR		(100)		NOT NULL;
+			--*
 		--+ LIỆT KÊ NHỮNG NGƯỜI CÓ TUỔI LỚN NHẤT
 			--* CÁCH 01: SUB QUERIES
 				SELECT *
@@ -74,7 +76,8 @@
 					(
 						SELECT MAX(age)
 						FROM users
-					);
+					)
+				;
 			--* CÁCH 02: CTEs
 				WITH MaxAgeCTE AS
 					(
@@ -87,7 +90,8 @@
 					(
 						SELECT MaxAge
 						FROM MaxAgeCTE
-					);
+					)
+				;
 			--* CÁCH 03: DÙNG JOIN
 				SELECT u.*
 				FROM users u
@@ -96,7 +100,8 @@
 					SELECT MAX(age) AS MaxAge
 					FROM users
 				) AS MaxAgeTable
-				ON u.age = MaxAgeTable.MaxAge;
+				ON u.age = MaxAgeTable.MaxAge
+				;
 			--* CÁCH 04: WINDOW FUNCTION
 				SELECT *
 				FROM
@@ -104,7 +109,8 @@
 					SELECT *, MAX(age) OVER () AS MaxAge
 					FROM users
 				) AS T
-				WHERE age = MaxAge;
+				WHERE age = MaxAge
+				;
 			--* CÁCH 05: HAVING
 				SELECT *
 				FROM users
@@ -113,4 +119,18 @@
 					(
 						SELECT MAX(age)
 						FROM users
-					);
+					)
+				;
+		--+ LIỆT KÊ 'full_name' CÓ HỌ 'Le'
+			SELECT *
+			FROM users
+			WHERE full_name LIKE '%Le%';
+			--* 'Le%'	: 'Le' Ở ĐẦU CHUỖI 			VD: LE1, LE VAN, LE THI, ...
+			--* '%Le'	: 'Le' Ở CUỐI CHUỖI 		VD: NGUYEN VAN LE, TRAI LE, ...
+			--* '%Le%'	: 'Le' Ở TRONG CHUỖI		VD: NGUYEN VAN LE, LE VAN VO TRI, ...
+		--+ ĐẾM CÓ BAO NHIÊU NGƯỜI TRONG 1 ĐỘ TUỔI
+			SELECT DISTINCT age, COUNT(full_name)
+			FROM users
+			GROUP BY age
+
+		
