@@ -238,15 +238,15 @@
 			--* CREATE TABLE 'rate_res'
 				CREATE TABLE rate_res
 				(
-					rate_res_id		INT				PRIMARY KEY		AUTO_INCREMENT	,
-					amount			INT												,
-					date_rate		DATE											,
+					rate_res_id		INT			PRIMARY KEY		AUTO_INCREMENT	,
+					amount			INT											,
+					date_rate		DATE										,
 					
-					user_id			INT												,
-					FOREIGN KEY(user_id) REFERENCES users(user_id)					,
+					user_id			INT											,
+					FOREIGN KEY(user_id) REFERENCES users(user_id)				,
 
-					rest_id 		INT												,
-					FOREIGN KEY(rest_id) REFERENCES restaurant(rest_id)				,
+					res_id 			INT											,
+					FOREIGN KEY(res_id) REFERENCES restaurant(res_id)			
 				)
 			--* DATA TABLE 'rate_res'
 				INSERT INTO rate_res (user_id, res_id, amount, date_rate) VALUES
@@ -271,3 +271,36 @@
 					(19		,19		,3		,'2024-09-19'),
 					(20		,20		,5		,'2024-09-20')
 			--* CREATE TABLE 'like_res'
+				CREATE TABLE like_res
+				(
+					like_res_id		INT			PRIMARY KEY		AUTO_INCREMENT	,
+					date_like		DATE										,
+
+					user_id			INT											,
+					FOREIGN KEY(user_id) REFERENCES users(user_id)				,
+
+					res_id 		INT											,
+					FOREIGN KEY(res_id) REFERENCES restaurant(res_id)			
+				)
+
+				INSERT INTO like_res (user_id, res_id, date_like) VALUES
+					(1		, 1		, '2024-09-01'	),
+					(2		, 2		, '2024-09-02'	),
+					(3		, 3		, '2024-09-03'	),
+					(4		, 4		, '2024-09-04'	),
+					(5		, 5		, '2024-09-05'	),
+					(6		, 6		, '2024-09-06'	),
+					(7		, 7		, '2024-09-07'	),
+					(8		, 8		, '2024-09-08'	),
+					(9		, 9		, '2024-09-09'	),
+					(10		, 10	, '2024-09-10'	),
+					(11		, 11	, '2024-09-11'	),
+					(12		, 12	, '2024-09-12'	),
+					(13		, 13	, '2024-09-13'	),
+					(14		, 14	, '2024-09-14'	),
+					(15		, 15	, '2024-09-15'	),
+					(16		, 16	, '2024-09-16'	),
+					(17		, 17	, '2024-09-17'	),
+					(18		, 18	, '2024-09-18'	),
+					(19		, 19	, '2024-09-19'	),
+					(20		, 20	, '2024-09-20'	);
