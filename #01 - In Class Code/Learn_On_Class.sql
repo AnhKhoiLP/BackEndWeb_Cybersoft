@@ -176,7 +176,7 @@
 					('Ethan Scott'		, 'ethan.scott@example.com'		, 'password123'		),
 					('Abigail Young'	, 'abigail.young@example.com'	, 'password123'		),
 					('William King'		, 'william.king@example.com'	, 'password123'		),
-					('Charlotte Wright'	, 'charlotte.wright@example.com', 'password123'		);
+					('Charlotte Wright'	, 'charlotte.wright@example.com', 'password123'		)
 			--* CREATE TABLE 'restaurant'
 				CREATE TABLE restaurant
 				(
