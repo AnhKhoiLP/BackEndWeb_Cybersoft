@@ -207,3 +207,67 @@
 					('Mountain View Bistro'	, 'https://example.com/images/mountain-view.jpg'		, 'Rustic dishes with an incredible view of the mountains.'		),
 					('The Breakfast Club'	, 'https://example.com/images/breakfast-club.jpg'		, 'Start your day right with delicious breakfast options.'		),
 					('The Golden Dragon'	, 'https://example.com/images/golden-dragon.jpg'		, 'Traditional Chinese dishes in a modern setting.'				)
+			--* CREATE TABLE 'food_type'
+				CREATE TABLE food_type
+				(
+					type_id		INT				PRIMARY KEY		AUTO_INCREMENT	,
+					type_name	VARCHAR(50)
+				)
+			--* DATA TABLE 'food_type'
+				INSERT INTO food_type (type_name) VALUES
+					('Italian'		),
+					('Chinese'		),
+					('Mexican'		),
+					('Japanese'		),
+					('Indian'		),
+					('Thai'			),
+					('French'		),
+					('Vietnamese'	),
+					('Greek'		),
+					('Spanish'		),
+					('American'		),
+					('Turkish'		),
+					('Korean'		),
+					('Mediterranean'),
+					('Lebanese'		),
+					('Brazilian'	),
+					('Caribbean'	),
+					('Ethiopian'	),
+					('Moroccan'		),
+					('German'		)
+			--* CREATE TABLE 'rate_res'
+				CREATE TABLE rate_res
+				(
+					rate_res_id		INT				PRIMARY KEY		AUTO_INCREMENT	,
+					amount			INT												,
+					date_rate		DATE											,
+					
+					user_id			INT												,
+					FOREIGN KEY(user_id) REFERENCES users(user_id)					,
+
+					rest_id 		INT												,
+					FOREIGN KEY(rest_id) REFERENCES restaurant(rest_id)				,
+				)
+			--* DATA TABLE 'rate_res'
+				INSERT INTO rate_res (user_id, res_id, amount, date_rate) VALUES
+					( 1		, 1		,5		,'2024-09-01'),
+					( 2		, 2		,4		,'2024-09-02'),
+					( 3		, 3		,3		,'2024-09-03'),
+					( 4		, 4		,5		,'2024-09-04'),
+					( 5		, 5		,4		,'2024-09-05'),
+					( 6		, 6		,5		,'2024-09-06'),
+					( 7		, 7		,3		,'2024-09-07'),
+					( 8		, 8		,4		,'2024-09-08'),
+					( 9		, 9		,5		,'2024-09-09'),
+					(10		,10		,4		,'2024-09-10'),
+					(11		,11		,5		,'2024-09-11'),
+					(12		,12		,3		,'2024-09-12'),
+					(13		,13		,4		,'2024-09-13'),
+					(14		,14		,5		,'2024-09-14'),
+					(15		,15		,3		,'2024-09-15'),
+					(16		,16		,4		,'2024-09-16'),
+					(17		,17		,5		,'2024-09-17'),
+					(18		,18		,4		,'2024-09-18'),
+					(19		,19		,3		,'2024-09-19'),
+					(20		,20		,5		,'2024-09-20')
+			--* CREATE TABLE 'like_res'
