@@ -415,14 +415,47 @@
 				)
 			--* DATA TABLE 'sub_food' - EMPTY
 		--+ HIỂN THỊ 5 NGƯỜI ĐÃ LIKE NHÀ HÀNG NHIỀU NHẤT
-			SELECT 
+			SELECT DISTINCT
 				user_id,
-				COUNT(res_id) OVER (PARTITION BY res_id) AS Count_Like,
+				COUNT(user_id) OVER (PARTITION BY user_id) AS User_Like,
 				(
 					SELECT full_name
 					FROM app_food.users
 					WHERE like_res.user_id = user_id
 				)  AS Full_Name
 			FROM app_food.like_res
-			ORDER BY count_like DESC
+			ORDER BY User_Like DESC
 			LIMIT 5
+		--+ TÌM 2 NHÀ HÀNG CÓ LƯỢT LIKE NHIỀU NHẤT
+			SELECT 
+				app_food.like_res.res_id,
+				(
+					SELECT res_name
+					FROM app_food.restaurant
+					WHERE res_id = app_food.like_res.res_id
+				) AS Rest_Name,
+				COUNT(app_food.like_res.user_id) AS Count_Like
+			FROM app_food.like_res
+			GROUP BY app_food.like_res.res_id
+			ORDER BY Count_Like DESC
+			LIMIT 2
+		--+ ĐẶT HÀNG NHIỀU NÈ
+			SELECT u.user_id, u.full_name, COUNT(o.order_id) AS order_count
+			FROM users u
+			JOIN orders o ON u.user_id = o.user_id
+			GROUP BY u.user_id, u.full_name
+			ORDER BY order_count DESC
+			LIMIT 1
+		--+ MR.NOBODY NÈ. ẨN DANH NÈ, KO ĂN KO UỐNG NÈ
+			--* TẠO THÊM USER KHÔNG HOẠT ĐỘNG
+				INSERT INTO app_food.users (full_name, email, pass_word) VALUES
+					('Mr.Nobody'			, 'Nobody.MR@example.com'		, 'password123'		)
+			SELECT 
+				user_id, 
+				full_name 
+			FROM 
+				app_food.users u
+			WHERE 
+				u.user_id NOT IN (SELECT user_id FROM app_food.orders) AND
+				u.user_id NOT IN (SELECT user_id FROM app_food.like_res) AND
+				u.user_id NOT IN (SELECT user_id FROM app_food.rate_res)
