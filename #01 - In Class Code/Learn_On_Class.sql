@@ -417,12 +417,12 @@
 		--+ HIỂN THỊ 5 NGƯỜI ĐÃ LIKE NHÀ HÀNG NHIỀU NHẤT
 			SELECT 
 				user_id,
-				COUNT(res_id) OVER (PARTITION BY res_id) AS count_like,
+				COUNT(res_id) OVER (PARTITION BY res_id) AS Count_Like,
 				(
-					SELECT users.full_name
-					FROM users
-					WHERE like_res.user_id = users.user_id
-				) 
+					SELECT full_name
+					FROM app_food.users
+					WHERE like_res.user_id = user_id
+				)  AS Full_Name
 			FROM app_food.like_res
 			ORDER BY count_like DESC
 			LIMIT 5
