@@ -271,6 +271,7 @@
 					(19		,19		,3		,'2024-09-19'),
 					(20		,20		,5		,'2024-09-20')
 			--* CREATE TABLE 'like_res'
+				DROP TABLE like_res
 				CREATE TABLE like_res
 				(
 					like_res_id		INT			PRIMARY KEY		AUTO_INCREMENT	,
@@ -284,23 +285,144 @@
 				)
 			--* DATA TABLE 'like_res'
 				INSERT INTO like_res (user_id, res_id, date_like) VALUES
-					(1		, 1		, '2024-09-01'	),
-					(2		, 2		, '2024-09-02'	),
-					(3		, 3		, '2024-09-03'	),
-					(4		, 4		, '2024-09-04'	),
-					(5		, 5		, '2024-09-05'	),
-					(6		, 6		, '2024-09-06'	),
-					(7		, 7		, '2024-09-07'	),
-					(8		, 8		, '2024-09-08'	),
-					(9		, 9		, '2024-09-09'	),
-					(10		, 10	, '2024-09-10'	),
-					(11		, 11	, '2024-09-11'	),
-					(12		, 12	, '2024-09-12'	),
-					(13		, 13	, '2024-09-13'	),
-					(14		, 14	, '2024-09-14'	),
-					(15		, 15	, '2024-09-15'	),
-					(16		, 16	, '2024-09-16'	),
-					(17		, 17	, '2024-09-17'	),
-					(18		, 18	, '2024-09-18'	),
-					(19		, 19	, '2024-09-19'	),
-					(20		, 20	, '2024-09-20'	);
+					(1		, 12	,'2024-09-01'	),
+					(2		, 5		,'2024-09-02'	),
+					(3		, 7		,'2024-09-03'	),
+					(4		, 18	,'2024-09-04'	),
+					(5		, 3		,'2024-09-05'	),
+					(6		, 9		,'2024-09-06'	),
+					(7		, 1		,'2024-09-07'	),
+					(8		, 14	,'2024-09-08'	),
+					(9		, 11	,'2024-09-09'	),
+					(10		, 6		,'2024-09-10'	),
+					(11		, 16	,'2024-09-11'	),
+					(12		, 4		,'2024-09-12'	),
+					(13		, 2		,'2024-09-13'	),
+					(14		, 8		,'2024-09-14'	),
+					(15		, 15	,'2024-09-15'	),
+					(16		, 19	,'2024-09-16'	),
+					(17		, 10	,'2024-09-17'	),
+					(18		, 17	,'2024-09-18'	),
+					(19		, 13	,'2024-09-19'	),
+					(20		, 20	,'2024-09-20'	),
+					(1		, 6		,'2024-09-21'	),
+					(2		, 9		,'2024-09-22'	),
+					(3		, 5		,'2024-09-23'	),
+					(4		, 11	,'2024-09-24'	),
+					(5		, 4		,'2024-09-25'	),
+					(6		, 18	,'2024-09-26'	),
+					(7		, 2		,'2024-09-27'	),
+					(8		, 16	,'2024-09-28'	),
+					(9		, 3		,'2024-09-29'	),
+					(10		, 8		,'2024-09-30'	),
+					(11		, 12	,'2024-10-01'	),
+					(12		, 1		,'2024-10-02'	),
+					(13		, 17	,'2024-10-03'	),
+					(14		, 14	,'2024-10-04'	),
+					(15		, 20	,'2024-10-05'	),
+					(16		, 19	,'2024-10-06'	),
+					(17		, 15	,'2024-10-07'	),
+					(18		, 7		,'2024-10-08'	),
+					(19		, 10	,'2024-10-09'	),
+					(20		, 13	,'2024-10-10'	),
+					(1		, 5		,'2024-10-11'	),
+					(2		, 9		,'2024-10-12'	),
+					(3		, 2		,'2024-10-13'	),
+					(4		, 16	,'2024-10-14'	),
+					(5		, 3		,'2024-10-15'	),
+					(6		, 18	,'2024-10-16'	),
+					(7		, 4		,'2024-10-17'	),
+					(8		, 6		,'2024-10-18'	),
+					(9		, 11	,'2024-10-19'	),
+					(10		, 8		,'2024-10-20'	)
+			--* CREATE TABLE 'foods'
+				CREATE TABLE foods
+				(
+					food_id 				INT 		PRIMARY KEY 	AUTO_INCREMENT	,
+					food_name 				VARCHAR		(100)							,
+					price 					INT											,
+					description 			VARCHAR		(255)							,
+					image 					VARCHAR		(255)							,
+
+					type_id 				INT											,
+					FOREIGN KEY(type_id) REFERENCES food_type(type_id)					
+				)
+			--* DATA TABLE 'foods'
+				INSERT INTO foods (food_name, type_id, price, image, description) VALUES
+					('Margherita Pizza'			, 1		, 150000	, 'https://example.com/images/margherita-pizza.jpg'		, 'Classic Italian pizza with tomatoes and mozzarella.'			),
+					('General Tso''''s Chicken'	, 2		, 120000	, 'https://example.com/images/general-tsos-chicken.jpg'	, 'Spicy, tangy, and sweet Chinese-style fried chicken.'		),
+					('Tacos al Pastor'			, 3		, 90000		, 'https://example.com/images/tacos-al-pastor.jpg'		, 'Mexican tacos with marinated pork and pineapple.'			),
+					('Sushi Roll'				, 4		, 180000	, 'https://example.com/images/sushi-roll.jpg'			, 'Fresh sushi rolls with salmon, avocado, and rice.'			),
+					('Chicken Curry'			, 5		, 160000	, 'https://example.com/images/chicken-curry.jpg'		, 'Rich and flavorful Indian chicken curry.'					),
+					('Pad Thai'					, 6		, 130000	, 'https://example.com/images/pad-thai.jpg'				, 'Popular Thai stir-fried noodles with shrimp and peanuts.'	),
+					('Croissant'				, 7		, 50000		, 'https://example.com/images/croissant.jpg'			, 'Buttery and flaky French pastry.'							),
+					('Pho'						, 8		, 100000	, 'https://example.com/images/pho.jpg'					, 'Traditional Vietnamese beef noodle soup.'					),
+					('Gyro'						, 9		, 120000	, 'https://example.com/images/gyro.jpg'					, 'Greek pita filled with seasoned lamb and vegetables.'		),
+					('Paella'					, 10	, 180000	, 'https://example.com/images/paella.jpg'				, 'Spanish rice dish with seafood and saffron.'					),
+					('Cheeseburger'				, 11	, 140000	, 'https://example.com/images/cheeseburger.jpg'			, 'Juicy American cheeseburger with lettuce and tomato.'		),
+					('Lamb Kebab'				, 12	, 170000	, 'https://example.com/images/lamb-kebab.jpg'			, 'Grilled Turkish lamb skewers with spices.'					),
+					('Bibimbap'					, 13	, 150000	, 'https://example.com/images/bibimbap.jpg'				, 'Korean rice bowl with vegetables, beef, and egg.'			),
+					('Falafel Wrap'				, 14	, 110000	, 'https://example.com/images/falafel-wrap.jpg'			, 'Mediterranean wrap with falafel, hummus, and veggies.'		),
+					('Hummus'					, 15	, 80000		, 'https://example.com/images/hummus.jpg'				, 'Traditional Lebanese chickpea dip served with pita.'			),
+					('Churrasco'				, 16	, 200000	, 'https://example.com/images/churrasco.jpg'			, 'Brazilian grilled beef steak with chimichurri.'				),
+					('Jerk Chicken'				, 17	, 150000	, 'https://example.com/images/jerk-chicken.jpg'			, 'Spicy Caribbean jerk chicken with rice and peas.'			),
+					('Doro Wat'					, 18	, 130000	, 'https://example.com/images/doro-wat.jpg'				, 'Ethiopian spicy chicken stew with injera.'					),
+					('Tagine'					, 19	, 160000	, 'https://example.com/images/tagine.jpg'				, 'Moroccan slow-cooked meat and vegetable stew.'				),
+					('Bratwurst'				, 20	, 100000	, 'https://example.com/images/bratwurst.jpg'			, 'German sausage served with mustard and sauerkraut.'			)
+			--* CREATE TABLE 'orders'
+				CREATE TABLE orders
+				(
+					order_id 		INT 		PRIMARY KEY 	AUTO_INCREMENT	,
+					amount 			INT											,
+					arr_sub_id 		VARCHAR		(255)							,
+					
+					food_id 		INT											,
+					FOREIGN KEY(food_id) REFERENCES foods(food_id)				,
+					
+					user_id 		INT											,
+					FOREIGN KEY(user_id) REFERENCES users(user_id)				
+				)
+			--* DATA TABLE 'orders'
+				INSERT INTO orders (food_id, user_id, amount, arr_sub_id) VALUES
+					(1		, 1		, 2		, 'SUB123, SUB456'	),
+					(2		, 2		, 1		, 'SUB789'			),
+					(3		, 3		, 3		, 'SUB101, SUB102'	),
+					(4		, 4		, 2		, 'SUB103, SUB104'	),
+					(5		, 5		, 1		, 'SUB105'			),
+					(6		, 6		, 4		, 'SUB106, SUB107'	),
+					(7		, 7		, 2		, 'SUB108'			),
+					(8		, 8		, 3		, 'SUB109, SUB110'	),
+					(9		, 9		, 1		, 'SUB111'			),
+					(10		, 10	, 2		, 'SUB112, SUB113'	),
+					(11		, 11	, 1		, 'SUB114'			),
+					(12		, 12	, 2		, 'SUB115, SUB116'	),
+					(13		, 13	, 3		, 'SUB117'			),
+					(14		, 14	, 4		, 'SUB118, SUB119'	),
+					(15		, 15	, 1		, 'SUB120'			),
+					(16		, 16	, 3		, 'SUB121, SUB122'	),
+					(17		, 17	, 2		, 'SUB123'			),
+					(18		, 18	, 4		, 'SUB124, SUB125'	),
+					(19		, 19	, 1		, 'SUB126'			),
+					(20		, 20	, 2		, 'SUB127, SUB128'	)
+			--* CREATE TABLE 'sub_food'
+				CREATE TABLE sub_food
+				(
+					sub_food_id 				INT 		PRIMARY KEY 	AUTO_INCREMENT	,
+					sub_food_name 				VARCHAR		(100)							,
+					sub_food_price 				INT											,
+					food_id 					INT											,
+					FOREIGN KEY(food_id) REFERENCES foods(food_id)					
+				)
+			--* DATA TABLE 'sub_food' - EMPTY
+		--+ HIỂN THỊ 5 NGƯỜI ĐÃ LIKE NHÀ HÀNG NHIỀU NHẤT
+			SELECT 
+				user_id,
+				COUNT(res_id) OVER (PARTITION BY res_id) AS count_like,
+				(
+					SELECT users.full_name
+					FROM users
+					WHERE like_res.user_id = users.user_id
+				) 
+			FROM app_food.like_res
+			ORDER BY count_like DESC
+			LIMIT 5
