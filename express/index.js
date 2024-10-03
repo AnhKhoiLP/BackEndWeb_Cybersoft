@@ -1,4 +1,5 @@
 import express, { request, response } from 'express';
+import connect from './db.js';
 
 // Tạo Object Tổng Của Express
 	const app = express();
@@ -35,4 +36,10 @@ import express, { request, response } from 'express';
 	{
 		let body = request.body;
 		response.send(body);
+	})
+
+	app.get("/get-user-db",async (request,response) =>
+	{
+		const [data] = await connect.query('SELECT * FROM users')
+		request.send(data);
 	})
