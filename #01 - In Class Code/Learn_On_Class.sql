@@ -498,20 +498,22 @@
 --#07 - TẠO, SỬ DỤNG, XÓA PROCEDURE
 	--> TẠO PROCEDURE
 		USE mysql_nodejs47
-		DELIMITER //
-		CREATE PROCEDURE mysql_nodejs47.remove_user(IN username VARCHAR(50), IN host VARCHAR(50))
-			BEGIN
-				DELETE FROM mysql.user			WHERE User = username AND Host = host;
-				DELETE FROM mysql.db			WHERE User = username AND Host = host;
-				DELETE FROM mysql.tables_priv 	WHERE User = username AND Host = host;
-				DELETE FROM mysql.columns_priv	WHERE User = username AND Host = host;
-				DELETE FROM mysql.procs_priv	WHERE User = username AND Host = host;
-				FLUSH PRIVILEGES;
-				SELECT CONCAT('User ', username, '@', host, ' has been removed.') AS result;
-			END //
 			
-		DELIMITER ;
+			DELIMITER //
+			CREATE PROCEDURE mysql_nodejs47.remove_user(IN username VARCHAR(50), IN host VARCHAR(50))
+				BEGIN
+					DELETE FROM mysql.user			WHERE User = username AND Host = host;
+					DELETE FROM mysql.db			WHERE User = username AND Host = host;
+					DELETE FROM mysql.tables_priv 	WHERE User = username AND Host = host;
+					DELETE FROM mysql.columns_priv	WHERE User = username AND Host = host;
+					DELETE FROM mysql.procs_priv	WHERE User = username AND Host = host;
+					FLUSH PRIVILEGES;
+					SELECT CONCAT('User ', username, '@', host, ' has been removed.') AS result;
+				END //
+				
+			DELIMITER ;
 	--> SỬ DỤNG PROCEDURE
 		CALL mysql_nodejs47.remove_user('eric', '%');
 	--> DANH SÁCH PROCEDURE
 		SHOW PROCEDURE STATUS WHERE Db = 'mysql_nodejs47';
+--#08 - Back End (Express Framwork NodeJS)
