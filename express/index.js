@@ -6,7 +6,7 @@ const app = express();
 // Viết API Hello World
 	app.get("/hello-world", (request, response) => 
 	{
-		response.send("hello world1")
+		response.send("hello world")
 	})
 	
 	app.get("/health-check", (request, response) =>
@@ -18,7 +18,8 @@ const app = express();
 		//Lấy ID Từ URL
 			let {id, hoTen}= request.params;
 			let {queryString} = request.query;
-			response.send({id, hoTen, queryString});
+			let {token, Authorization} = request.headers;
+			response.send({id, hoTen, queryString, token, Authorization});
 	})
 // Define Port Cho BE
 app.listen(8080, () => {
