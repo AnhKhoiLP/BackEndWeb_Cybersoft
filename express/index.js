@@ -1,7 +1,10 @@
-import express from 'express';
+import express, { request, response } from 'express';
 
 // Tạo Object Tổng Của Express
-const app = express();
+	const app = express();
+
+// Thêm Middlware Để Convert String Sang JSON Với API POST Và PUT
+	app.use(express.json());
 
 // Viết API Hello World
 	app.get("/hello-world", (request, response) => 
@@ -18,10 +21,18 @@ const app = express();
 		//Lấy ID Từ URL
 			let {id, hoTen}= request.params;
 			let {queryString} = request.query;
-			let {token, Authorization} = request.headers;
-			response.send({id, hoTen, queryString, token, Authorization});
+			let {token, authorization} = request.headers;
+			let headers = request.headers
+			response.send({id, hoTen, queryString, token, authorization});
 	})
 // Define Port Cho BE
-app.listen(8080, () => {
-	console.log("BE starting with port 8080");
-})
+	app.listen(8080, () => {
+		console.log("BE starting with port 8080");
+	})
+
+// Lấy Body Từ API POST(CREATE) Và PUT(UPDATE)
+	app.post("/create-user",(request,response) => 
+	{
+		let body = request.body;
+		response.send(body);
+	})
