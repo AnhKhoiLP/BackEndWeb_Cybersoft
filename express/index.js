@@ -13,7 +13,14 @@ const app = express();
 	{
 		response.send("Server is normally")
 	})
-// Define port cho Be
+
+	app.get ("/get-user/:id", (request, response) =>
+	{
+		//Lấy ID Từ URL
+			let {id}= request.params;
+			response.send(id);
+	})
+// Define Port Cho BE
 app.listen(8080, () => {
 	console.log("BE starting with port 8080");
 })
