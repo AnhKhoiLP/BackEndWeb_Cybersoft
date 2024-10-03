@@ -6,8 +6,8 @@
 		host: "localhost",
 		user: "root",
 		password: "123456",
-		database: "app_food",
-		port: 3307
+		database: "MySQL_NodeJS47",
+		port: 3306
 	});
 
 	export default connect;

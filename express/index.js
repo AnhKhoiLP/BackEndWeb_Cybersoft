@@ -40,6 +40,6 @@ import connect from './db.js';
 
 	app.get("/get-user-db",async (request,response) =>
 	{
-		const [data] = await connect.query('SELECT * FROM users')
+		const [data] = await connect.query('SELECT * FROM appfood.users')
 		request.send(data);
 	})
