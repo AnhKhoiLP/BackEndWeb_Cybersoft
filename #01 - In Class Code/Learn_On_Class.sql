@@ -15,7 +15,7 @@
 			age				INT					,
 			pass_word		VARCHAR		(200)	 
 		)
-	--> DATA USERS
+	--? DATA USERS
 		INSERT INTO users (full_name, email, age, pass_word) VALUES 
 			('Nguyen Van A'		, 'nguyenvana@example.com'	, 25	, 'password123'			),
 			('Le Thi B'			, 'lethib@example.com'		, 30	, 'passw0rd!'			),
@@ -135,7 +135,7 @@
 				--> BẮT BUỘC PHẢI CÓ KHI DÙNG HARD DELETE
 				DELETE FROM users
 				WHERE full_name = "Nguyen Van A"
-	--> DATA RELATIONSHIP
+	--? DATA RELATIONSHIP
 		--+ TỔ CHỨC VÀ QUẢN LÝ DỮ LIỆU TỐT HƠN THAY VÌ VIẾT TẤT CẢ DATA TRONG 1 TABLE DUY NHẤT
 		--+ GIẢM THIỂU TRÙNG LẶP DỮ LIỆU
 		--+ TĂNG HIỆU QUẢ TRUY VẤN
@@ -453,4 +453,33 @@
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.orders) AND
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.like_res) AND
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.rate_res)
---#03 - 
+--#03 - THIẾT KẾ, PHÂN TÍCH DB YOUTUBE MINI
+	--> CREATE DATABASE
+		CREATE DATABASE youtube_mini
+	--> TABLE user
+		CREATE TABLE app_food.users
+		(
+			user_id						INT				PRIMARY KEY		AUTO_INCREMENT	,
+			user_name					VARCHAR(100)									,
+			user_email					VARCHAR(100)									,
+			user_password				VARCHAR(100)									,
+			user_profile_picture_url	
+
+		)
+--#04 - THIẾT KẾ, PHÂN TÍCH DB WEB APP FOOD
+--#05 - TẠO SERVER ẢO [VIDEO BUỔI 04 - 01:33:00]
+	--> 54.242.114.94
+	--> root
+	--> 123456
+--#06 - PHÂN QUYỀN USER
+	--> CREATE USER
+		CREATE USER 'eric'@'%' IDENTIFIED BY '123456789'
+	--> CẤP QUYỀN CHO USER VÀO 1 DATABASE CỤ THỂ
+		GRANT ALL PRIVILEGES ON mysql_nodejs47.* TO 'eric'@'%'
+		FLUSH PRIVILEGES;
+	--> REVOKE QUYỀN CHO ACCOUNT ERIC
+		REVOKE ALL PRIVILEGES ON mysql_nodejs47.* FROM 'eric'@'%'
+	--> XEM ERIC CÓ QUYỀN TRÊN CSDL NÀO
+		SELECT Db, User, Host FROM mysql.db WHERE User = 'eric'@'%'
+	--> SHOW QUYỀN USER ERIC
+		SHOW GRANTS FOR 'eric'@'%'
