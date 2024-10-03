@@ -2,7 +2,7 @@
 	--+ OPEN MYSQL 8.0 COMMAND LINE CLIENT
 	--+ CREATE DATABASE <TÊN DATABASE>
 	--+ SHOW DATABASES
---#02 - TẠO TABLE, DATA
+--#02 - TẠO TABLE, DATA, DATABASE APP FOOD
 	--> TABLE users
 		--+ Có 3 Kiểu Dữ Liệu Chính
 			--? Number: INTTEGER, FLOAT, ...
@@ -453,3 +453,4 @@
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.orders) AND
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.like_res) AND
 					app_food.users.user_id NOT IN (SELECT user_id FROM app_food.rate_res)
+--#03 - 
