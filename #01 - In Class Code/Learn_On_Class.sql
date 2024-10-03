@@ -472,14 +472,45 @@
 	--> root
 	--> 123456
 --#06 - PHÂN QUYỀN USER
-	--> CREATE USER
-		CREATE USER 'eric'@'%' IDENTIFIED BY '123456789'
-	--> CẤP QUYỀN CHO USER VÀO 1 DATABASE CỤ THỂ
-		GRANT ALL PRIVILEGES ON mysql_nodejs47.* TO 'eric'@'%'
-		FLUSH PRIVILEGES;
-	--> REVOKE QUYỀN CHO ACCOUNT ERIC
-		REVOKE ALL PRIVILEGES ON mysql_nodejs47.* FROM 'eric'@'%'
-	--> XEM ERIC CÓ QUYỀN TRÊN CSDL NÀO
-		SELECT Db, User, Host FROM mysql.db WHERE User = 'eric'@'%'
-	--> SHOW QUYỀN USER ERIC
-		SHOW GRANTS FOR 'eric'@'%'
+		--+ CREATE USER
+			CREATE USER 'eric'@'%' IDENTIFIED BY '123456789'
+		--+ CẤP QUYỀN CHO USER VÀO 1 DATABASE CỤ THỂ
+			GRANT ALL PRIVILEGES ON mysql_nodejs47.* TO 'eric'@'%'
+			FLUSH PRIVILEGES
+		--+ REVOKE QUYỀN CHO ACCOUNT ERIC
+			REVOKE ALL PRIVILEGES ON mysql_nodejs47.* FROM 'eric'@'%'
+		--+ XEM ERIC CÓ QUYỀN TRÊN CSDL NÀO
+			SELECT Db, User, Host FROM mysql.db WHERE User = 'eric'@'%'
+		--+ SHOW QUYỀN USER ERIC
+			SHOW GRANTS FOR 'eric'@'%'
+		--+ CẤP QUYỀN SELECT CHO USER ERIC
+			GRANT SELECT ON mysql_nodejs47.* TO 'eric'@'%'
+			FLUSH PRIVILEGES
+		--+ SHOW QUYỀN USER ERIC
+			SHOW GRANTS FOR 'eric'@'%'
+		--+ SHOW CONNECTIONS TO DB
+			SHOW PROCESSLIST
+		--+ KILL SESSIONS
+	--> CÁC QUYỀN CÓ TRONG SQL
+		--? ALL PRIVILEGES: LÊN ĐẦU TAO NGỒI LUÔN
+		--? CÁC QUYỀN TRÊN TABLE: SELECT, INSERT, UPDATE, DELETE
+		--? QUYỀN TRÊN DATABASE: DROP, ALTER, CREATE, INDEX
+--#07 - TẠO, SỬ DỤNG, XÓA PROCEDURE
+	--> TẠO PROCEDURE
+		DELIMITER //
+
+		CREATE PROCEDURE remove_user(IN username VARCHAR(50), IN host VARCHAR(50))
+		BEGIN
+			DELETE FROM mysql.user WHERE User = username AND Host = host;
+			DELETE FROM mysql.db WHERE User = username AND Host = host;
+			DELETE FROM mysql.tables_priv WHERE User = username AND Host = host;
+			DELETE FROM mysql.columns_priv WHERE User = username AND Host = host;
+			DELETE FROM mysql.procs_priv WHERE User = username AND Host = host;
+			FLUSH PRIVILEGES;
+			SELECT CONCAT('User ', username, '@', host, ' has been removed.') AS result;
+		END //
+		
+		DELIMITER;
+	--> SỬ DỤNG PROCEDURE
+		CALL remove_user('eric', '%');
+
