@@ -1,6 +1,6 @@
 import express from 'express';
 
-// Tạo object tổng của express
+// Tạo Object Tổng Của Express
 const app = express();
 
 // Viết API Hello World
@@ -13,12 +13,12 @@ const app = express();
 	{
 		response.send("Server is normally")
 	})
-
-	app.get ("/get-user/:id", (request, response) =>
+	app.get ("/get-user/:id/:hoTen", (request, response) =>
 	{
 		//Lấy ID Từ URL
-			let {id}= request.params;
-			response.send(id);
+			let {id, hoTen}= request.params;
+			let {queryString} = request.query;
+			response.send({id, hoTen, queryString});
 	})
 // Define Port Cho BE
 app.listen(8080, () => {
