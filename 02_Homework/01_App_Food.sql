@@ -195,7 +195,6 @@
 					price 					INT											,
 					description 			VARCHAR		(255)							,
 					image 					VARCHAR		(255)							,
-
 					type_id 				INT											,
 					FOREIGN KEY(type_id) REFERENCES food_type(type_id)					
 				)
