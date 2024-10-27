@@ -1,5 +1,5 @@
-# Ignore node_modules folders in the entire project
-**/node_modules/
+# Bỏ qua tất cả các thư mục node_modules trong toàn bộ dự án
+**/01_In_Class_Code/Buoi_04_Express/node_modules/
 
-# Ignore .env files in the entire project
+# Bỏ qua tất cả các tệp .env trong toàn bộ dự án
 **/*.env
