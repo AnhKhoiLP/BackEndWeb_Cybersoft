@@ -1,5 +1,5 @@
 # Bỏ qua tất cả các thư mục node_modules trong toàn bộ dự án
-**/01_In_Class_Code/Buoi_04_Express/node_modules/
+**/node_modules/
 
 # Bỏ qua tất cả các tệp .env trong toàn bộ dự án
 **/*.env
