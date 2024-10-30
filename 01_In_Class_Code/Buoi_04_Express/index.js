@@ -1,4 +1,5 @@
 import express from "express";
+import connect from "./database.js";
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
 		const app = express()
@@ -118,6 +119,21 @@ import express from "express";
 				let body = request.body;
 				response.send(body);
 			})
+			//* Body ⇨ raw ⇨ json ⇨ Nhập
+			//* {"id": "01","hoTen": "Khôi","test": "test"}
+			//* http://localhost:8080/create-user
 //| Kết Nối Tới Database
 	//? Tạo Object Để Kết Nối Tới Database
-		//* B01: Tạo File database.js
+		//* B01: npm i mysql2
+		//* B02: Tạo File database.js
+		//* B03:
+	//? API Get User From Database
+		app.get("/get-user-database", async(request, response) =>
+		{
+			const [database] = await connect.query
+			(`
+				select full_name, email from users
+			`)
+			response.send(database);
+		})
+		//* http://localhost:8080/create-user
