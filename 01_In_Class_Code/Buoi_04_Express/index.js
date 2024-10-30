@@ -1,5 +1,4 @@
 import express from "express";
-
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
 		const app = express()
@@ -26,69 +25,70 @@ import express from "express";
 		//* Sau Đó Sửa Lại Đoạn Script Trong Package.json
 			//# "start": "node index.js" ⇨ "start": "nodemon index.js"
 //| Viết API
-	//+ API Hello World
-		app.get("/hello-world", (request, response) =>
-		{
-			response.send("Hello World");
-		})
-	//+ API Check Server
-		app.get("/health-check", (request, response) =>
-		{
-			response.send("Server Is Normally");
-		})
-	//+ Lấy Thông Tin Data Từ Params, Query String, Headers, Body
-		//? Params
-			//> 1 Variable ID
-				app.get("/get-user/:id", (request, response) => 
-				{
-					//* Lấy ID Từ URL
-					let {id} = request.params;
-						response.send(id);
-				})
-				// http://localhost:8080/get-user/10/
-			//> 2 Variable ID, hoTen
-				app.get("/get-user/:id/:hoTen", (request, response) => 
-				{
-					//* Lấy ID Từ URL
-					let {id, hoTen} = request.params;
-						response.send
-						({
-								id,
-								hoTen
-						});
-				})
-				// http://localhost:8080/get-user/10/LePhuocAnhKhoi
-		//? Query String
-			//? Giả Sử Muốn Search Họ Tên
-				app.get("/get-user-query/:id/:hoTen", (request, response) => 
+	//? API GET
+		//+ API Hello World
+			app.get("/hello-world", (request, response) =>
+			{
+				response.send("Hello World");
+			})
+		//+ API Check Server
+			app.get("/health-check", (request, response) =>
+			{
+				response.send("Server Is Normally");
+			})
+		//+ Lấy Thông Tin Data Từ Params, Query String, Headers, Body
+			//? Params
+				//> 1 Variable ID
+					app.get("/get-user/:id", (request, response) => 
+					{
+						//* Lấy ID Từ URL
+						let {id} = request.params;
+							response.send(id);
+					})
+					// http://localhost:8080/get-user/10/
+				//> 2 Variable ID, hoTen
+					app.get("/get-user/:id/:hoTen", (request, response) => 
 					{
 						//* Lấy ID Từ URL
 						let {id, hoTen} = request.params;
-						let {queryString} = request.query;
 							response.send
 							({
-								id,
-								hoTen,
-								queryString
+									id,
+									hoTen
 							});
 					})
-					// http://localhost:8080/get-user-query/10/LePhuocAnhKhoi?queryString=Kh%C3%B4i
-		//? Headers, Body
-			//? Dùng Postman (Headers)
-				app.get("/get-user-by-token/:id/:hoTen", (request, response) => 
-					{
-						//* Lấy ID Từ URL
-						let {id, hoTen} = request.params;
-						let {queryString} = request.query;
-						let {token} = request.headers;
-							response.send
-							({
-								id,
-								hoTen,
-								queryString,
-								token
-							});
-					})
+					// http://localhost:8080/get-user/10/LePhuocAnhKhoi
+			//? Query String
+				//? Giả Sử Muốn Search Họ Tên
+					app.get("/get-user-query/:id/:hoTen", (request, response) => 
+						{
+							//* Lấy ID Từ URL
+							let {id, hoTen} = request.params;
+							let {queryString} = request.query;
+								response.send
+								({
+									id,
+									hoTen,
+									queryString
+								});
+						})
+						// http://localhost:8080/get-user-query/10/LePhuocAnhKhoi?queryString=Kh%C3%B4i
+			//? Headers, Body
+				//? Dùng Postman (Headers)
+					app.get("/get-user-by-token/:id/:hoTen", (request, response) => 
+						{
+							//* Lấy ID Từ URL
+							let {id, hoTen} = request.params;
+							let {queryString} = request.query;
+							let {token} = request.headers;
+								response.send
+								({
+									id,
+									hoTen,
+									queryString,
+									token
+								});
+						})
 				//* Vào Postman Qua Tab Headers Nhập token Và Value
 				//* http://localhost:8080/get-user-by-token/10/LePhuocAnhKhoi?queryString=Khoi
 				app.get("/get-user-by-token-autho/:id/:hoTen", (request, response) => 
@@ -108,3 +108,16 @@ import express from "express";
 					})
 				//* Vào Postman Qua Tab Headers Nhập token Và Value
 				//* http://localhost:8080/get-user-by-token-autho/10/LePhuocAnhKhoi?queryString=Khoi
+	//? API POST (Create) Và PUT (Update)
+		//> Lưu Ý: Để Mà Lấy Được Thông Tin Body Từ API PUT Và POST Thì Phải Convert Từ String Sang JSON ⇨ Cần Middleware Để Convert JSON Sang String
+		//? Thêm Middleware Convert String Về JSON Với API POST Và PUT
+			app.use(express.json());
+		//? API Create User
+			app.post("/create-user", (request, response) => 
+			{
+				let body = request.body;
+				response.send(body);
+			})
+//| Kết Nối Tới Database
+	//? Tạo Object Để Kết Nối Tới Database
+		//* B01: Tạo File database.js
