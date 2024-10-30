@@ -89,5 +89,22 @@ import express from "express";
 								token
 							});
 					})
-				//* 
-				//* http://localhost:8080/get-user-by-token/10/LePhuocAnhKhoi?queryString=Kh%C3%B4i
+				//* Vào Postman Qua Tab Headers Nhập token Và Value
+				//* http://localhost:8080/get-user-by-token/10/LePhuocAnhKhoi?queryString=Khoi
+				app.get("/get-user-by-token-autho/:id/:hoTen", (request, response) => 
+					{
+						//* Lấy ID Từ URL
+						let {id, hoTen} = request.params;
+						let {queryString} = request.query;
+						let {token,authorization} = request.headers;
+							response.send
+							({
+								id,
+								hoTen,
+								queryString,
+								token,
+								authorization
+							});
+					})
+				//* Vào Postman Qua Tab Headers Nhập token Và Value
+				//* http://localhost:8080/get-user-by-token-autho/10/LePhuocAnhKhoi?queryString=Khoi
