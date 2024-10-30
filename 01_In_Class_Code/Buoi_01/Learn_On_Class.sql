@@ -11,8 +11,8 @@
 		CREATE TABLE users
 		(
 			full_name		VARCHAR		(100)	,
-			email			VARCHAR		(200)	,
-			age				INT					,
+			email				VARCHAR		(200)	,
+			age					INT							,
 			pass_word		VARCHAR		(200)	 
 		)
 	--? DATA USERS
