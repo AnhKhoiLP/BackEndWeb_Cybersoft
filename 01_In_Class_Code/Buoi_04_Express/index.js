@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import connect from "./database.js";
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
@@ -110,11 +110,8 @@ import connect from "./database.js";
 				//* Vào Postman Qua Tab Headers Nhập token Và Value
 				//* http://localhost:8080/get-user-by-token-autho/10/LePhuocAnhKhoi?queryString=Khoi
 	//? API POST (Create) Và PUT (Update)
-		//> Lưu Ý: Để Mà Lấy Được Thông Tin Body Từ API PUT Và POST Thì Phải Convert Từ String Sang JSON ⇨ Cần Middleware Để Convert JSON Sang String
-		//? Thêm Middleware Convert String Về JSON Với API POST Và PUT
-			app.use(express.json());
 		//? API Create User
-			app.post("/create-user", (request, response) => 
+		app.post("/create-user", (request, response) => 
 			{
 				let body = request.body;
 				response.send(body);
@@ -122,6 +119,9 @@ import connect from "./database.js";
 			//* Body ⇨ raw ⇨ json ⇨ Nhập
 			//* {"id": "01","hoTen": "Khôi","test": "test"}
 			//* http://localhost:8080/create-user
+//| Thêm Middleware Convert String Về JSON Với API POST Và PUT
+	//> Lưu Ý: Để Mà Lấy Được Thông Tin Body Từ API PUT Và POST Thì Phải Convert Từ String Sang JSON ⇨ Cần Middleware Để Convert JSON Sang String
+			app.use(express.json());
 //| Kết Nối Tới Database
 	//? Tạo Object Để Kết Nối Tới Database
 		//* B01: npm i mysql2
@@ -132,8 +132,47 @@ import connect from "./database.js";
 		{
 			const [database] = await connect.query
 			(`
-				select full_name, email from users
+				SELECT
+					full_name,
+					email
+				FROM users
 			`)
 			response.send(database);
 		})
 		//* http://localhost:8080/create-user
+	//? 
+		app.post("/add-user-database-error", async (request, response) => 
+		{
+			const query = 
+				`
+					INSERT INTO app_food.users (full_name, email, pass_word) VALUES (?, ?, ?)
+				`
+			let body = request.body;
+			let {full_name, email, pass_word} = body;
+			await connect.execute(query, [full_name, email, pass_word], (error, result) => 
+			{
+				if (error)
+				{
+					return response.send("Error");
+				}
+				else
+				{
+					return response.send(result);
+				}
+			})
+		})
+		//* Lý Do Lỗi
+			//* Callback Không Cần Thiết Với Await: Khi Bạn Dùng Await Với Connect.Execute, Bạn Không Cần Dùng Thêm Callback ((Error, Result) => {...}) Vì Await Tự Động Đợi Cho Kết Quả Trả Về. Khi Dùng Await, Connect.Execute Sẽ Trả Về Một Mảng [Result, Fields] Và Bạn Có Thể Lấy Trực Tiếp Result.
+			//* Xung Đột Giữa Await Và Callback: Khi Bạn Dùng Await Cùng Với Callback, Như Trong Đoạn Mã Đầu Tiên: Cách Này Gây Ra Lỗi Vì Await Yêu Cầu Kết Quả Trả Về Là Một Promise Mà Không Có Callback. Khi Bạn Sử Dụng Callback, connect.execute Không Trả Về Một Promise, Dẫn Đến Lỗi.
+		app.post("/add-user-database", async (request, response) => 
+			{
+				const query = 
+					`
+						INSERT INTO app_food.users (full_name, email, pass_word) VALUES (?, ?, ?)
+					`
+				let body = request.body;
+				let {full_name, email, pass_word} = body;
+				const [data] = await connect.execute(query, [full_name, email, pass_word])
+				return response.send(data);
+			})
+
