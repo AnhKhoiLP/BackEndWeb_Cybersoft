@@ -1,4 +1,4 @@
-import express, { query } from "express";
+import express, {query} from "express";
 import connect from "./database.js";
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
@@ -175,4 +175,15 @@ import connect from "./database.js";
 				const [data] = await connect.execute(query, [full_name, email, pass_word])
 				return response.send(data);
 			})
-
+//| Cài dotenv
+	//* npm install dotenv
+	//* .env Là Một File Cấu Hình Trong Các Dự Án Phần Mềm, Thường Dùng Để Lưu Các Biến Môi Trường (Environment Variables). Những Biến Này Có Thể Bao Gồm Các Thông Tin Như:
+		//+ Thông Tin Nhạy Cảm: Ví Dụ Như DATABASE_URL, API_KEY, SECRET_KEY, ...
+		//+ Cấu Hình Ứng Dụng: Các Cấu Hình Như PORT, DEBUG_MODE, NODE_ENV (Environment Đang Chạy Là Development, Staging, Hay Production)
+		//+ Cấu Hình Kết Nối: Các Thông Tin Kết Nối Đến Cơ Sở Dữ Liệu, Dịch Vụ Bên Ngoài (OAuth, Google APIs), ...
+		//? DATABASE
+			// DB_HOST = "localhost"
+			// DB_USER = "root"
+			// DB_PASS = "123456"
+			// DB_PORT = "3306"
+			// DB_DATABASE = "app_food"
