@@ -1,5 +1,6 @@
 import express, {query} from "express";
 import connect from "./database.js";
+import rootRouters from "./src/routers/rootRouters.js";
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
 		const app = express()
@@ -187,3 +188,15 @@ import connect from "./database.js";
 			// DB_PASS = "123456"
 			// DB_PORT = "3306"
 			// DB_DATABASE = "app_food"
+//| Tạo Folder src
+	//+ Tạo Folder routes
+		//* Tạo File rootRoutes.js
+			//$ Tiếp Tục Tại rootRoutes.js
+		//* Tạo File userRoutes.js
+		//* Tạo File videoRoutes.js
+	//+ Tạo Folder controllers
+	//+ Tạo Folder models
+	//+ Tạo Folder config
+//| Import rootRoutes.js Vào index.js
+	import rootRouters from "./src/routers/rootRouters.js";
+	app.use(rootRouters);
