@@ -25,10 +25,10 @@
 	dotenv.config();
 	const connect = createPool
 	({
-		host: DB_HOST,
-		user: DB_USER,
-		password: DB_PASS,
-		port: DB_PORT,
-		database: DB_DATABASE
+		host: process.env.DB_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		port: process.env.DB_PORT,
+		database: process.env.DB_DATABASE
 	});
 	export default connect;
