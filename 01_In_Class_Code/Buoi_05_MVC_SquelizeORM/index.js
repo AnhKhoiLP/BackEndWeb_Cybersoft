@@ -1,6 +1,5 @@
 import express, {query} from "express";
 import connect from "./database.js";
-import rootRouters from "./src/routers/rootRouters.js";
 //| Tạo Back-End Cơ Bản
 	//+ Tạo Object Tổng Của Express
 		const app = express()
@@ -129,17 +128,17 @@ import rootRouters from "./src/routers/rootRouters.js";
 		//* B02: Tạo File database.js
 		//* B03:
 	//? API Get User From Database
-		app.get("/get-user-database", async(request, response) =>
-		{
-			const [database] = await connect.query
-			(`
-				SELECT
-					full_name,
-					email
-				FROM users
-			`)
-			response.send(database);
-		})
+		// app.get("/get-user-database", async(request, response) =>
+		// {
+		// 	const [database] = await connect.query
+		// 	(`
+		// 		SELECT
+		// 			full_name,
+		// 			email
+		// 		FROM users
+		// 	`)
+		// 	response.send(database);
+		// })
 		//* http://localhost:8080/create-user
 	//? 
 		app.post("/add-user-database-error", async (request, response) => 
@@ -165,17 +164,17 @@ import rootRouters from "./src/routers/rootRouters.js";
 		//* Lý Do Lỗi
 			//* Callback Không Cần Thiết Với Await: Khi Bạn Dùng Await Với Connect.Execute, Bạn Không Cần Dùng Thêm Callback ((Error, Result) => {...}) Vì Await Tự Động Đợi Cho Kết Quả Trả Về. Khi Dùng Await, Connect.Execute Sẽ Trả Về Một Mảng [Result, Fields] Và Bạn Có Thể Lấy Trực Tiếp Result.
 			//* Xung Đột Giữa Await Và Callback: Khi Bạn Dùng Await Cùng Với Callback, Như Trong Đoạn Mã Đầu Tiên: Cách Này Gây Ra Lỗi Vì Await Yêu Cầu Kết Quả Trả Về Là Một Promise Mà Không Có Callback. Khi Bạn Sử Dụng Callback, connect.execute Không Trả Về Một Promise, Dẫn Đến Lỗi.
-		app.post("/add-user-database", async (request, response) => 
-			{
-				const query = 
-					`
-						INSERT INTO app_food.users (full_name, email, pass_word) VALUES (?, ?, ?)
-					`
-				let body = request.body;
-				let {full_name, email, pass_word} = body;
-				const [data] = await connect.execute(query, [full_name, email, pass_word])
-				return response.send(data);
-			})
+		// app.post("/add-user-database", async (request, response) => 
+		// 	{
+		// 		const query = 
+		// 			`
+		// 				INSERT INTO app_food.users (full_name, email, pass_word) VALUES (?, ?, ?)
+		// 			`
+		// 		let body = request.body;
+		// 		let {full_name, email, pass_word} = body;
+		// 		const [data] = await connect.execute(query, [full_name, email, pass_word])
+		// 		return response.send(data);
+		// 	})
 //| Cài dotenv
 	//* npm install dotenv
 	//* .env Là Một File Cấu Hình Trong Các Dự Án Phần Mềm, Thường Dùng Để Lưu Các Biến Môi Trường (Environment Variables). Những Biến Này Có Thể Bao Gồm Các Thông Tin Như:
