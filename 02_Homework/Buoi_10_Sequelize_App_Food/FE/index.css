@@ -1,0 +1,176 @@
+/*| All */
+*
+	{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body
+	{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: rgb(74, 93, 94);
+	}
+/*| Tittle */
+.title
+{
+
+}
+/*| Button */
+	.button_container
+	{
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: space-around;
+		gap: 20px 5px;
+		width: 100vw;
+	}
+	.button_container button
+	{
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		top: 0;
+		left: 0;
+		width: clamp(min(184px,48vw), 24vw, 600px);
+		height: clamp(20px, 5vw, 70px);
+		border: none;
+		background-color: transparent;
+	}
+
+	.button_container button p
+	{
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(255, 255, 255, 0.1);
+		color: rgb(255, 255, 255);
+		/* box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); */
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(15px);
+		border-radius: 30px;
+		text-decoration: none;
+		letter-spacing: 1px;
+		overflow: hidden;
+		font-weight: 400;
+		z-index: 1;
+		transition: 0.5s;
+		font-size: clamp(10px, 1vw, 30px);
+	}
+
+	.button_container button:hover p
+	{
+		letter-spacing: 3px;
+	}
+
+	.button_container button p::before
+	{
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: min(50%,90%);
+		height: 100%;
+		background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+		transform: skewX(45deg) translate(0);
+		filter: blur(0px);
+		transition: 0.5s;
+		z-index: 100;
+		overflow: hidden;
+	}
+	.button_container button:hover p::before
+	{
+		transform: skewX(45deg) translate(50vw);
+	}
+
+	button::before{
+		content: "";
+		position: absolute;
+		background: rgb(255, 0, 0);
+		width: 30px;
+		height: 5px;
+		left: 50%;
+		bottom: -4px;
+		transform: translateX(-50%);
+		border-radius: 10px;
+		transition: 0.5s;
+		transition-delay: 0.2s;
+		backdrop-filter: blur(15px);
+	}
+	button:hover::before
+	{
+		bottom: 0;
+		height: 50%;
+		width: 80%;
+		border-radius: 30px;
+	}
+	button::after
+	{
+		content: "";
+		position: absolute;
+		background: rgb(255, 0, 0);
+		width: 30px;
+		height: 10px;
+		left: 50%;
+		top: -4px;
+		transform: translateX(-50%);
+		border-radius: 10px;
+		transition: 0.5s;
+		transition-delay: 0.2s;
+		backdrop-filter: blur(15px);
+	}
+	button:hover::after
+	{
+		top: 0;
+		height: 50%;
+		width: 80%;
+		border-radius: 30px;
+	}
+	button:nth-child(1)::before,button:nth-child(1)::after,
+	button:nth-child(2)::before,button:nth-child(2)::after
+	{
+			background: rgb(255, 31, 113);
+			box-shadow: 0 0 5px rgb(255, 31, 113),
+			0 0 15px rgb(255, 31, 113),
+			0 0 30px rgb(255, 31, 113),
+			0 0 60px rgb(255, 31, 113);
+	}
+
+	button:nth-child(3)::before,button:nth-child(3)::after,
+	button:nth-child(4)::before,button:nth-child(4)::after
+	{
+			background: rgb(45, 178, 255);
+			box-shadow: 0 0 5px rgb(45, 178, 255), 
+			0 0 15px rgb(45, 178, 255), 
+			0 0 30px rgb(45, 178, 255),
+			0 0 60px rgb(45, 178, 255);
+	}
+
+	button:nth-child(5)::before,button:nth-child(5)::after,
+	button:nth-child(6)::before,button:nth-child(6)::after
+	{
+			background: rgb(30, 255, 69);
+			box-shadow: 0 0 5px rgb(30, 255, 69), 
+			0 0 15px rgb(30, 255, 69), 
+			0 0 30px rgb(30, 255, 69),
+			0 0 60px rgb(30, 255, 69);
+	}
+	button:nth-child(7)::before,button:nth-child(7)::after,
+	button:nth-child(8)::before,button:nth-child(8)::after
+	{
+			background: rgb(233, 255, 30);
+			box-shadow: 0 0 5px rgb(233, 255, 30), 
+			0 0 15px rgb(233, 255, 30), 
+			0 0 30px rgb(233, 255, 30),
+			0 0 60px rgb(233, 255, 30);
+	}
