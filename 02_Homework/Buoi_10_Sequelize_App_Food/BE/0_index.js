@@ -11,8 +11,8 @@ app.get("/get-user-from-database", async (request, response) =>
 		const[data] = await connect.query
 		(`
 			SELECT
-				full_name,
-				email
+				*
 			FROM users
 		`)
+		response.send(data);
 	})

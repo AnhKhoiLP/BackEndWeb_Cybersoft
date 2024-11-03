@@ -139,7 +139,7 @@ import connect from "./database.js";
 			`)
 			response.send(database);
 		})
-		//* http://localhost:8080/create-user
+		//* http://localhost:8080/get-user-database
 	//? 
 		app.post("/add-user-database-error", async (request, response) => 
 		{

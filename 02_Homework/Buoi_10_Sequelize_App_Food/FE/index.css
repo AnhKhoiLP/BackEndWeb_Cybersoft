@@ -10,7 +10,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background-color: rgb(74, 93, 94);
+		background: url(./IMG/6056289.jpg);
+		background-position: center;
+		background-size: cover;
 	}
 /*| Tittle */
 	.title_container
@@ -21,48 +23,47 @@
 	{
     position: relative;
 		width: 80vw;
-		height: 5vw;
+		height: clamp(10px, 3vw, 200px);
 		border-radius: 30px;
 		padding: 10px 0px;
 		margin: 10px 0px 5vw 0px;
-		background-color: rgba(255, 255, 255, 0.1);
+		background-color: rgba(247, 182, 182, 0.281);
 		z-index: 1;
 		backdrop-filter: blur(2px);
 	}
 	.title_container h1
 	{
 		position: absolute;
-		font-size: clamp(10px, 5vw, 200px);
+		font-size: clamp(10px, 2vw, 200px);
 		letter-spacing: 5px;
-		padding: 10px 0px;
+		padding: 2vw 0px;
 		margin: 10px 0px 5vw 0px;
-		color: rgba(0, 255, 255, 0.5);
+		color: rgba(47, 72, 180, 0.651);
 		text-transform: uppercase;
 		width: 80vw;
 		text-align: center;
-		-webkit-box-reflect: below 0px linear-gradient(transparent, rgba(0, 255, 255, 0.3));
+		-webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 255, 255, 0.199));
 		line-height: 0.7;
 		outline: none;
 		animation: animate 5s linear infinite;
-		z-index: -1;
+		z-index: 2;
+		border: none;
 	}
 	@keyframes animate
 	{
 		0%, 18%, 20%, 50.1%, 65.1%, 80%, 90.1%, 92%
 		{
-			color: rgba(0, 255, 255, 0.5);
-			box-shadow: none;
+			color: rgb(255, 255, 255);
+			text-shadow: none;
 		}
 		18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100%
 		{
-			color: rgb(255, 255, 255);
-			text-shadow:  0 0 10px  rgb(0, 255, 255),
-										0 0 15px  rgb(0, 255, 255),
-										0 0 20px  rgb(0, 255, 255),
-										0 0 25px  rgb(0, 255, 255),
-										0 0 30px  rgb(0, 255, 255),
-										0 0 35px  rgb(0, 255, 255),
-										0 0 40px  rgb(0, 255, 255);
+			color: rgb(0, 4, 255);
+			text-shadow:  0 0 20px   rgba(47, 72, 180, 0.651),
+										0 0 40px   rgba(47, 72, 180, 0.651),
+										0 0 80px   rgba(47, 72, 180, 0.651),
+										0 0 160px  rgba(47, 72, 180, 0.651),
+										0 0 320px  rgba(47, 72, 180, 0.651);
 		}
 	}
 /*| Button */
@@ -74,6 +75,7 @@
 		justify-content: space-around;
 		gap: 20px 5px;
 		width: 100vw;
+		margin: 0px 0px 20px 0px;
 	}
 	.button_container button
 	{
@@ -100,8 +102,8 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		background: rgba(255, 255, 255, 0.1);
-		color: rgb(255, 255, 255);
+		background: rgba(250, 180, 180, 0.308);
+		color: rgb(0, 0, 0);
 		/* box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); */
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -223,3 +225,45 @@
 									0 0 60px rgb(255, 148, 9);
 	}
 /*| Table Header*/
+	.table_section
+	{
+		width: 95vw;
+		height: 10%;
+		background-color: #fff5;
+		text-align: center;
+		backdrop-filter: blur(10px);
+		box-shadow: 0 0.4rem 0.8rem #0005;
+		border-radius: 0.8rem;
+		overflow: hidden;
+	}
+	.table_title
+	{
+		width: 100%;
+		height: 10%;
+		background-color: #fff4;
+		padding: 0.8rem 1rem;
+	}
+	.table_container
+	{
+		width: 95%;
+		max-height: 89%;
+		background-color: #fffb;
+		margin: 0.8rem auto;
+		border-radius: 0.6rem;
+		overflow: auto;
+	}
+	table th td
+	{
+		border-collapse: collapse;
+	}
+	thead th
+	{
+		position: sticky;
+		top: 0;
+		left: 0;
+		background-color: #D5D1DEFE;
+	}
+	tbody tr:nth-child(even)
+	{
+		background-color: #0000000b;
+	}
