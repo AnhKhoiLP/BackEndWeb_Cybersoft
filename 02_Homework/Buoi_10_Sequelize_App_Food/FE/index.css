@@ -1,6 +1,8 @@
 :root
 {
 	--title-glassmorphism-background-color: rgba(247, 182, 182, 0.281);
+	--title-h1-color: rgba(47, 72, 180, 0.651);
+	--title-h1-refect: rgba(0, 255, 255, 0.199);
 	
 }
 
@@ -16,8 +18,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background: url(./IMG/6056289.jpg);
-		background-position: center;
+		background: top / contain repeat url("./IMG/6056289\ -\ Clone\ For\ Web.jpg");
 		background-size: cover;
 	}
 /*| Tittle */
@@ -33,8 +34,8 @@
 		border-radius: 30px;
 		margin: 1vw 0px 3vw 0px;
 		background-color: var(--title-glassmorphism-background-color);
-		z-index: 1;
-		backdrop-filter: blur(2px);
+		z-index: 2;
+		backdrop-filter: blur(1px);
 	}
 	.title_container h1
 	{
@@ -42,15 +43,15 @@
 		font-size: clamp(10px, 2vw, 200px);
 		letter-spacing: 5px;
 		margin: 2vw 0px 5vw 0px;
-		color: rgba(47, 72, 180, 0.651);
+		color: var(--title-h1-color);
 		text-transform: uppercase;
 		width: 80vw;
 		text-align: center;
-		-webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 255, 255, 0.199));
+		-webkit-box-reflect: below 1px linear-gradient(transparent, var(--title-h1-refect));
 		line-height: 0.7;
 		outline: none;
 		animation: animate 5s linear infinite;
-		z-index: 2;
+		z-index: 1;
 		border: none;
 	}
 	@keyframes animate
@@ -151,7 +152,7 @@
 		content: "";
 		position: absolute;
 		background: rgb(255, 0, 0);
-		width: 30px;
+		width: 70px;
 		height: 10px;
 		left: 50%;
 		bottom: -4px;
@@ -173,7 +174,7 @@
 		content: "";
 		position: absolute;
 		background: rgb(255, 0, 0);
-		width: 30px;
+		width: 70px;
 		height: 10px;
 		left: 50%;
 		top: -4px;
